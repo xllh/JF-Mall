@@ -8,6 +8,7 @@
 </head>
 <body>
 	<%=request.getAttribute("email") %><br />
+	<%=session.getAttribute("email") %><br />
 	<br />
 	<form action="/action/uploadFile" enctype="multipart/form-data" method="POST">
 		<table>

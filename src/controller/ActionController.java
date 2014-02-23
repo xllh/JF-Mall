@@ -10,6 +10,7 @@ public class ActionController extends Controller {
 		String email = getPara("email");
 		String password = getPara("password");
 		System.out.println(email+password);
+		getSession(true).setAttribute("email", email);
 		setAttr("email", email);
 		render("/admin/index.jsp");
 	}

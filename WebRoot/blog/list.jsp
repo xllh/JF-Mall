@@ -7,17 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-123 list.jsp
 <table>
-<%	
-	List<Object> blogList = (ArrayList<Object>)request.getAttribute("blogs");
-		for(int i=0;i<blogList.size();i++){
-			Map<String, Object> blog = (Map<String, Object>)blogList.get(i);
+<%
+	myPage<Blog> blogPageList = (myPage<Blog>)request.getAttribute("blogPageList");
+	List<Blog> blogList = (ArrayList<Blog>)blogPageList.getList();
+	for(int i=0;i<blogList.size();i++){
+		Map<String, Object> blog = (Map<String, Object>)blogList.get(i);
 %>
 	<tr>
 		<td><%=blog.get("id") %></td>
-		<td><%=blog.get("title") %></td>
-		<td><%=blog.get("create_time") %></td>
+		<td><a href="/blog/<%=blog.get("guid") %>"><%=blog.get("title") %></a></td>
+		<td><%=blog.get("createtime") %></td>
 	</tr>
 <%}%>
 </table>

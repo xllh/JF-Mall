@@ -10,5 +10,4 @@ public class ActionRoutes extends Routes {
 	public void config() {
 		this.add("/action", ActionController.class);
 	}
-
 }

@@ -24,7 +24,7 @@
 		<td colspan="2"><input type="submit" value="提交" />|<input type="reset" value="重置" /></td>
 	</tr>
 	<tr>
-		<td></td>
+		<td><a href="http://www.oschina.com/action/oauth2/authorize?response_type=code&client_id=TQKp4Oj2ublXJ80pVlvY&redirect_uri=http://www.bxltest.net/login.jsp">osc账号登陆</a></td>
 		<td></td>
 	</tr>
 </table>

@@ -5,7 +5,6 @@ import route.AdminRoutes;
 import route.FrontRoutes;
 import bean.Blog;
 import bean.User;
-import bean.New;
 
 import com.jfinal.config.Constants;
 import com.jfinal.config.Handlers;
@@ -24,13 +23,13 @@ public class JFMallConfig extends JFinalConfig{
 		//缓存相关
 		me.add(new EhCachePlugin());
 		//数据库访问相关
-		C3p0Plugin c3p0 = new C3p0Plugin("jdbc:mysql://192.168.1.11/oschina", "root", "oschina");
+		C3p0Plugin c3p0 = new C3p0Plugin("jdbc:mysql://127.0.0.1/adouteam", "root", "root");
 		me.add(c3p0);
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(c3p0);
 		me.add(arp);
-		arp.addMapping("osc_users", User.class);
-		arp.addMapping("osc_news", New.class);
-		arp.addMapping("osc_blogs", "id", Blog.class);
+		arp.addMapping("adou_user", User.class);
+		//arp.addMapping("osc_news", New.class);
+		arp.addMapping("adou_blog", "id", Blog.class);
 	}
 	public void configInterceptor(Interceptors me) {}
 	public void configHandler(Handlers me) {}

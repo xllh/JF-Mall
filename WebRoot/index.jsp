@@ -7,8 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	哎呀，首页啊~！
-	<%=request.getAttribute("name") %>
-	<a href="http://www.oschina.com/action/oauth2/authorize?response_type=code&client_id=TQKp4Oj2ublXJ80pVlvY&redirect_uri=http://www.bxltest.net/login.jsp">osc账号登陆</a>
+	首页！
+	<div id="sina_wb" style="width:300px;float:right;">
+		<iframe width="100%" height="450" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=450&fansRow=1&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=5048971246&verifier=1246c597&dpc=1"></iframe>
+	</div>
 </body>
 </html>
