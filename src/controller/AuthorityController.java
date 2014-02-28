@@ -1,13 +1,13 @@
 package controller;
 
-import org.apache.commons.lang.StringUtils;
+import interceptor.AdminInterceptor;
 
+import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 
+@Before(AdminInterceptor.class)
 public class AuthorityController extends Controller {
 	public void index(){
-		if(StringUtils.isBlank(getSession().getAttribute("email").toString())){
-			render("/login.jsp");
-		}
+		render("/manager/index.jsp");
 	}
 }

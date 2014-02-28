@@ -9,7 +9,6 @@ public class FrontRoutes extends Routes {
 
 	@Override
 	public void config() {
-//		add("/", GlobalController.class);
 		add("/", IndexController.class);
 		add("/blog", BlogController.class);
 	}

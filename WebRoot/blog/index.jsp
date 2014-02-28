@@ -9,9 +9,10 @@
 <% Map<String, Object> blog = (Map<String, Object>)request.getAttribute("singleBlog");%>
 <table>
 	<tr><td><%=blog.get("title") %></td></tr>
-	<tr><td><%=blog.get("createtime") %></td></tr>
+	<tr><td><%=blog.get("ctime") %></td></tr>
 	<tr><td><%=blog.get("content") %></td></tr>
 	<tr><td><%=blog.get("keywords") %></td></tr>
 </table>
+123
 </body>
 </html>

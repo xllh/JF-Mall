@@ -7,7 +7,7 @@
 <title>登陆页面</title>
 </head>
 <body>
-<form action="/action/login">
+<form action="/action/login" method="post">
 <table style="margin:0 auto;width:300px;">
 	<tr>
 		<td colspan="2">用户登陆</td>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="bean.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,9 +7,7 @@
 <title>后台首页</title>
 </head>
 <body>
-	<%=request.getAttribute("email") %><br />
-	<%=session.getAttribute("email") %><br />
-	<br />
+	<%User currentUser=(User)request.getAttribute("adou_user"); %>
 	<form action="/action/uploadFile" enctype="multipart/form-data" method="POST">
 		<table>
 			<tr>
