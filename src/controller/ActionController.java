@@ -2,6 +2,8 @@ package controller;
 
 import java.io.File;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.lang.StringUtils;
 
 import bean.User;
@@ -37,6 +39,18 @@ public class ActionController extends Controller {
 		
 		getSession(true).setAttribute("adou_user", user);
 		render("/manager/index.jsp");
+	}
+	
+	public void logout(){
+		HttpSession httpSess = getSession();
+		if(httpSess == null){
+			return;
+		}
+		User user = (User)httpSess.getAttribute("adou_user");
+		if(user != null){
+			httpSess.setAttribute("adou_user", null);
+		}
+		render("/index.jsp");
 	}
 	
 	public void uploadFile(){

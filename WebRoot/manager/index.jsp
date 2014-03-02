@@ -7,7 +7,9 @@
 <title>后台首页</title>
 </head>
 <body>
-	<%User currentUser=(User)request.getAttribute("adou_user"); %>
+	<%User currentUser=(User)session.getAttribute("adou_user"); %>
+	<%if(currentUser!=null){ %>
+	<div class="admin_toolbar">当前用户：<%=currentUser.getStr("email") %><a href="/action/logout">注销</a></div>
 	<form action="/action/uploadFile" enctype="multipart/form-data" method="POST">
 		<table>
 			<tr>
@@ -24,5 +26,10 @@
 		</table>
 	</form>
 	<a href="/action/downloadFile?file=123.zip">123.zip</a>
+	<%}else{ 
+		response.sendRedirect("/index.jsp");
+	}%>
+	
+	
 </body>
 </html>

@@ -24,9 +24,8 @@ public class JFMallConfig extends JFinalConfig{
 		me.add(new EhCachePlugin());
 		//数据库访问相关
 		C3p0Plugin c3p0 = new C3p0Plugin("jdbc:mysql://127.0.0.1/adouteam", "root", "root");
-		if(!c3p0.start()){
-			System.out.println("数据库启动失败！");
-		}
+		me.add(c3p0);
+		
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(c3p0);
 		me.add(arp);
 		arp.addMapping("adou_user", User.class);
