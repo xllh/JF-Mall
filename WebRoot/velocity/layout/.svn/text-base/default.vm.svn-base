@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>#if(${page_title}) ${page_title} #else 阿豆博客 #end</title>
+<meta http-equiv="keywords" content="#if(${key_words}) ${key_words} #else 阿豆博客,web开发,Linux  #end" />
+<meta http-equiv="description" content="#if(${description}) ${description} #else 阿豆博客 #end" />
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="Content-Language" content="zh-CN"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=7" />
+  <meta name="Robots" content="noindex,nofollow"/>
+  <link rel = "Shortcut Icon" href="/favicon.ico">
+  <link rel="stylesheet" type="text/css" href="/css/base/base.css" />
+  <link rel="stylesheet" type="text/css" href="/css/adoublogmain.css" />
+</head>
+<body>
+	$screen_content
+</body>
+</html>

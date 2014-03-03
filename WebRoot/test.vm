@@ -1,0 +1,11 @@
+#parse("/velocity/macro/test.vm")
+#set($name="a1b2")
+$name
+
+#set($greatlakes = ["Superior","Michigan","Huron","Erie","Ontario"])
+#set($color = "blue")
+<table>
+    #tablerows($color $greatlakes)
+</table>
+
+#USER.isExistEmail("abc.sdf")

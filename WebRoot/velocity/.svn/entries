@@ -1,0 +1,34 @@
+10
+
+dir
+9
+svn://svn.adouteam.com/adouteam/adouteam/webapp/WEB-INF/velocity
+svn://svn.adouteam.com/adouteam
+
+
+
+2014-01-21T15:42:02.612193Z
+9
+bxl
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+6bba2047-9fa8-4f93-a883-2c7ff3e041d3
+
+layout
+dir
+
+macro
+dir
+

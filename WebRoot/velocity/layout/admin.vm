@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>#if(${page_title}) ${page_title} #else 阿豆博客后台管理 #end</title>
+    <meta http-equiv="keywords" content="#if(${key_words}) ${key_words} #else 阿豆博客,web开发,Linux  #end" />
+    <meta http-equiv="description" content="#if(${description}) ${description} #else 阿豆博客 #end" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="zh-CN"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <meta name="Robots" content="noindex,nofollow"/>
+    <link rel = "Shortcut Icon" href="/favicon.ico">
+	<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+	<link rel="stylesheet" href="/css/base/base.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/admin/css/index.css" type="text/css" media="screen" />
+</head>
+<body>
+	<div id="header">
+    	<h1><a href="/admin/index.vm">阿豆博客管理后台</a></h1>
+    	<span id="tool">welcome,${session.user}&nbsp;&nbsp;|&nbsp;&nbsp;<a href="logout">安全退出</a></span>
+    </div>
+    <div id="leftnav">
+    	<h2>博客管理</h2>
+    	<ul>
+    		<li><a href="/admin/blog/list.vm">博客列表</a></li>
+    		<li><a href="/admin/blog/add.vm">添加博客</a></li>
+    		<li><a href="/admin/blog/recycle.vm">回收站</a></li>
+    	</ul>
+    	<h2>用户管理</h2>
+    	<ul>
+    		<li><a href="/admin/user/list.vm">用户列表</a></li>
+    	</ul>
+    	<h2>统计管理</h2>
+    	<ul>
+    		<li><a href="/admin/count/blog.vm">博客统计</a></li>
+    		<li><a href="/admin/count/user.vm">用户统计</a></li>
+    	</ul>
+    </div>
+    <div id="main">
+    	$screen_content
+    </div>
+	<div class="cb"></div>
+	<div id="footer">
+		<span>管理员<a href="mailto:buxianglongoschina@gmail.com">buxianglongoschina@gmail.com</a>
+		&nbsp;&nbsp;|&nbsp;&nbsp;
+		<a href="http://www.beianbeian.com/search/adouteam.com">粤ICP备13073551号-1</a></span></div>
+</body>
+</html>

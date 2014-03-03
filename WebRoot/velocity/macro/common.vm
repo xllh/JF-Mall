@@ -1,0 +1,80 @@
+#*
+* 布局文件定义
+*#
+#macro(layout $page)
+	#set($layout = $page)
+#end
+#*
+* 布局文件定义
+*#
+#macro(title $page)
+	#set($page_title = "$page - Cloud Foundry大会")
+#end
+#macro(keywords $page)
+	#set($key_words = "$page")
+#end
+
+#macro(desription $page)
+	#set($description = "$page")
+#end
+
+
+#*
+* 以相对路径方式嵌入动态页面
+*#
+#macro(invoke $__p_page)
+#if($__p_page.startsWith("/"))
+#parse($__p_page)
+#else
+#set($__uri = ${link.path})
+#set($__path = $__uri.substring(0, $__uri.lastIndexOf("/")))
+#parse("$__path/$__p_page")
+#end
+#end
+
+#*
+ * 以相对路径方式嵌入静态页面
+ *#
+#macro(insert $__p_page)
+#if($__p_page.startsWith("/"))
+#include($__p_page)
+#else
+#set($__uri = ${link.path})
+#set($__path = $__uri.substring(0, $__uri.lastIndexOf("/")))
+#include("$__path/$__p_page")
+#end
+#end
+#**
+  * 分页模板1
+  *#
+#macro(page $page $totalPage)
+	<ul>
+		#if($page!=1)
+			#set($prePage = $page - 1)
+			<li><a href="?page=${prePage}">上一页</a></li>
+		#end
+		##前半部分
+		#set($startPage=1)
+		#if($page>=5)
+			$startPage = $page - 4
+		#end
+		#foreach($i in [$startPage .. $page])
+			<a href="?page=${i}">$i|</a>
+		#end
+		##后半部分
+		#set($startPage=$page+1)
+		#set($stopPage=$totalPage)
+		#if($totalPage - $page >= 4)
+			$stopPage=$page + 4
+		#end
+		#if($totalPage != $page)
+			#foreach($i in [$startPage..$stopPage])
+				<a href="?page=${i}">$i|</a>
+			#end
+		#end
+		#if($page<$totalPage)
+			#set($nextPage=${page} + 1)
+			<li><a href="?page=${nextPage}">下一页</a></li>
+		#end
+	</ul>
+#end

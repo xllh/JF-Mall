@@ -22,4 +22,8 @@ public class IndexController extends Controller {
 	public void error(){
 		renderError(404, "/404.html");
 	}
+	
+	public void test(){
+		renderVelocity("/test.vm");
+	}
 }
