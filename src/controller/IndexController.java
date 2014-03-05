@@ -2,12 +2,9 @@ package controller;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.jfinal.core.Controller;
-
-public class IndexController extends Controller {
+public class IndexController extends CoreController {
 	public void index(){
 		String param0 = getPara(0);
-		System.out.println("hehehhe");
 		if(StringUtils.isBlank(param0)){
 			render("/index.jsp");
 		}
