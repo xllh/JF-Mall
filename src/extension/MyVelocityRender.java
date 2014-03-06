@@ -16,10 +16,10 @@ import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.exception.ResourceNotFoundException;
 
 import bean.Blog;
+import bean.User;
 
 import com.jfinal.render.Render;
 import com.jfinal.render.RenderException;
-import com.jfinal.render.RenderFactory;
 
 public class MyVelocityRender extends Render {
 	/**
@@ -51,7 +51,6 @@ public class MyVelocityRender extends Render {
 	
 	static void init(ServletContext servletContext) {
 		String webPath = servletContext.getRealPath("/");
-		webPath = "/home/buxianglong/eclipseworkspace/JF-Mall/WebRoot";
 		properties.setProperty(Velocity.FILE_RESOURCE_LOADER_PATH, webPath);
 		properties.setProperty(Velocity.ENCODING_DEFAULT, encoding); 
 		properties.setProperty(Velocity.INPUT_ENCODING, encoding); 
@@ -66,13 +65,15 @@ public class MyVelocityRender extends Render {
 		}
 	}
 	
+	public VelocityContext invokeBeanToContext(VelocityContext context){
+		context.put("BLOG", Blog.class);
+		context.put("USER", User.class);
+		return context;
+	}
+	
 	public void render() {
 		 if (notInit) {
-			 String webPath = "/home/buxianglong/eclipseworkspace/JF-Mall/WebRoot";
-			 properties.setProperty(Velocity.FILE_RESOURCE_LOADER_PATH, webPath);
-			 properties.setProperty(Velocity.ENCODING_DEFAULT, encoding); 
-			 properties.setProperty(Velocity.INPUT_ENCODING, encoding); 
-			 properties.setProperty(Velocity.OUTPUT_ENCODING, encoding);
+			 MyVelocityRender.init(this.request.getServletContext());
 			 Velocity.init(properties);	// Velocity.init("velocity.properties");	// setup
 			 notInit = false;
 		 }
@@ -87,7 +88,7 @@ public class MyVelocityRender extends Render {
              */
             VelocityContext context = new VelocityContext();
             
-            context.put("BLOG", Blog.class);
+            context = invokeBeanToContext(context);
             
     		// Map root = new HashMap();
     		for (Enumeration<String> attrs=request.getAttributeNames(); attrs.hasMoreElements();) {

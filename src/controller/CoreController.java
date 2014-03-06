@@ -1,7 +1,6 @@
 package controller;
 
 import com.jfinal.core.Controller;
-import com.jfinal.render.VelocityRender;
 
 import extension.MyVelocityRender;
 

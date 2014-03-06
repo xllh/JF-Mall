@@ -9,8 +9,8 @@ public class Blog extends Model<Blog>{
 	 */
 	private static final long serialVersionUID = 1L;
 	public static final Blog dao = new Blog();
-
-	public static String say(String word){
-		return "Hello, "+ word;
-	}
+	
+	
+	//static for velocity tool
+	
 }

@@ -11,8 +11,6 @@ import bean.User;
 import com.jfinal.core.Controller;
 import com.jfinal.upload.UploadFile;
 
-import dao.UserDAO;
-
 public class ActionController extends Controller {
 	public void login(){
 		String email = getPara("email").trim();
@@ -28,17 +26,17 @@ public class ActionController extends Controller {
 			renderText("请输入密码");
 		}
 		
-		if(!UserDAO.isExistEmail(email)){
+		if(!User.isExistEmail(email)){
 			renderText("邮箱不存在");
 			return;
 		}
-		if(!UserDAO.CheckLogin(user)){
+		if(!User.CheckLogin(user)){
 			renderText("密码错误");
 			return;
 		}
 		
 		getSession(true).setAttribute("adou_user", user);
-		render("/manager/index.jsp");
+		renderVelocity("/manager/index.vm");
 	}
 	
 	public void logout(){
