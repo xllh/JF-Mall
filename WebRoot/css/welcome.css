@@ -1,0 +1,15 @@
+.clrblue{background-color:#20859C;}
+.clrorange{background-color:#CB7E24;}
+.clrred{background-color:#B01028;}
+
+body{background-color:#ccc;}
+
+.main{margin:20px auto;width:980px;}
+.main .item{float:left;width:300px;margin-left:20px;margin-bottom:30px;}
+.main .item span{display:block;width:300px;height:100px;line-height:100px;text-align:center;text-decoration:none;color:white;font-size:20pt;box-shadow: 0px 0px 9px rgba(0,0,0,.3);cursor:pointer;}
+
+.main .item_list{position:absolute;top:130px;background-color:white;width:300px;z-index:9999;margin-left:20px;}
+.main .item_list ul{list-style:none;}
+.main .item_list ul li{}
+.main .item_list ul li a{display:block;height:40px;line-height:40px;text-decoration:none;padding-left:10px;}
+.main .item_list ul li a:hover{background-color:#ddd;}

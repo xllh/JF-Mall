@@ -6,7 +6,7 @@ public class IndexController extends CoreController {
 	public void index(){
 		String param0 = getPara(0);
 		if(StringUtils.isBlank(param0)){
-			render("/index.jsp");
+			render("/welcome.html");
 		}
 	}
 	

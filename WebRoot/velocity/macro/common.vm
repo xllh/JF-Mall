@@ -17,8 +17,6 @@
 #macro(desription $page)
 	#set($description = "$page")
 #end
-
-
 #*
 * 以相对路径方式嵌入动态页面
 *#
@@ -31,7 +29,6 @@
 #parse("$__path/$__p_page")
 #end
 #end
-
 #*
  * 以相对路径方式嵌入静态页面
  *#

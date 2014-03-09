@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<link rel="stylesheet" href="/css/base/base.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/css/welcome.css" />
+	<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+	<title>阿豆</title>
+</head>
+<body>
+	<div class="head">阿豆（Adou）</div>
+	<div class="main">
+		<div class="item clrblue"><span id="blog">博客</span></div>
+		<div class="item_list">
+			<ul>
+				<li><a href="#">最新博客</a></li>
+				<li><a href="#">最热博客</a></li>
+				<li><a href="#">Java相关</a></li>
+				<li><a href="#">Eclipse</a></li>
+			</ul>
+		</div>
+		<div class="item clrorange"><span id="soft">新闻</span></div>
+		<div class="item clrred"><span id="about">关于</span></div>
+		<div class="item"><span></span></div>
+		<div class="item"><span></span></div>
+		<div class="item"><span></span></div>
+		<div class="item"><span></span></div>
+		<div class="item"><span></span></div>
+		<div class="item"><span></span></div>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".item span").click(function(){
+				$(this).append($(this).html());
+			});
+		});
+	</script>
+</body>
+</html>
