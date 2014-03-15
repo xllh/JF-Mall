@@ -15,8 +15,7 @@ import org.apache.velocity.app.Velocity;
 import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.exception.ResourceNotFoundException;
 
-import bean.Blog;
-import bean.User;
+import tool.VelocityTool;
 
 import com.jfinal.render.Render;
 import com.jfinal.render.RenderException;
@@ -65,12 +64,6 @@ public class MyVelocityRender extends Render {
 		}
 	}
 	
-	public VelocityContext invokeBeanToContext(VelocityContext context){
-		context.put("BLOG", Blog.class);
-		context.put("USER", User.class);
-		return context;
-	}
-	
 	public void render() {
 		 if (notInit) {
 			 MyVelocityRender.init(this.request.getServletContext());
@@ -87,8 +80,11 @@ public class MyVelocityRender extends Render {
              *  references (ex. $list) in the template
              */
             VelocityContext context = new VelocityContext();
-            
-            context = invokeBeanToContext(context);
+            //将请求和相应对象放入上下文
+            context.put("request", this.request);
+            context.put("response", this.response);
+            //添加访问Bean的对象
+            context.put("BT", VelocityTool.class);
             
     		// Map root = new HashMap();
     		for (Enumeration<String> attrs=request.getAttributeNames(); attrs.hasMoreElements();) {

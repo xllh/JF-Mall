@@ -10,28 +10,65 @@
 <body>
 	<div class="head">阿豆（Adou）</div>
 	<div class="main">
-		<div class="item clrblue"><span id="blog">博客</span></div>
-		<div class="item_list">
-			<ul>
-				<li><a href="#">最新博客</a></li>
-				<li><a href="#">最热博客</a></li>
-				<li><a href="#">Java相关</a></li>
-				<li><a href="#">Eclipse</a></li>
-			</ul>
+		<div class="item clrblue">
+			<span id="blog" class=" domain">博客</span>
+			<div class="item_list miss">
+				<ul>
+					<li><a href="#">进入首页</a></li>
+					<li><a href="#">最新博客</a></li>
+					<li><a href="#">最热博客</a></li>
+					<li><a href="#">Java相关</a></li>
+					<li><a href="#">Eclipse</a></li>
+				</ul>
+			</div>
 		</div>
-		<div class="item clrorange"><span id="soft">新闻</span></div>
-		<div class="item clrred"><span id="about">关于</span></div>
-		<div class="item"><span></span></div>
-		<div class="item"><span></span></div>
-		<div class="item"><span></span></div>
-		<div class="item"><span></span></div>
-		<div class="item"><span></span></div>
-		<div class="item"><span></span></div>
+		<div class="item clrorange">
+			<span id="soft" class="domain">新闻</span>
+			<div class="item_list miss">
+				<ul>
+					<li><a href="#">进入首页</a></li>
+					<li><a href="#">今日新闻</a></li>
+					<li><a href="#">最热新闻</a></li>
+					<li><a href="#">本周新闻</a></li>
+					<li><a href="#">去年今日</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="item clrred">
+			<span id="about" class="domain">关于我</span>
+			<div class="item_list miss">
+				<ul>
+					<li><a href="#">进入首页</a></li>
+					<li><a href="#">关于我</a></li>
+					<li><a href="#">联系我</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="item clrorange">
+			<span id="special-topic" class="domain">专题</span>
+			<div class="item_list miss">
+				<ul>
+					<li><a href="#">进入首页</a></li>
+					<li><a href="#">Java专题</a></li>
+					<li><a href="#">Linux专题</a></li>
+					<li><a href="#">Developer Tools专题</a></li>
+					<li><a href="#">HTML/CSS/JS专题</a></li>
+					<li><a href="#">网站专题</a></li>
+				</ul>
+			</div>
+		</div>
 	</div>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$(".item span").click(function(){
-				$(this).append($(this).html());
+			$(".domain").click(function(){
+				var child = $(this).next(".item_list");
+				if(child.attr("class").indexOf("miss")!=-1){
+					var allChildren = $(".item .item_list");
+					allChildren.addClass("miss");
+					child.removeClass("miss");
+				}else{
+					child.addClass("miss");
+				}
 			});
 		});
 	</script>

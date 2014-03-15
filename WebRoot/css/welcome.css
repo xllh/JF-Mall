@@ -8,8 +8,17 @@ body{background-color:#ccc;}
 .main .item{float:left;width:300px;margin-left:20px;margin-bottom:30px;}
 .main .item span{display:block;width:300px;height:100px;line-height:100px;text-align:center;text-decoration:none;color:white;font-size:20pt;box-shadow: 0px 0px 9px rgba(0,0,0,.3);cursor:pointer;}
 
-.main .item_list{position:absolute;top:130px;background-color:white;width:300px;z-index:9999;margin-left:20px;}
+.main .item_list{position:absolute;background-color:white;width:300px;z-index:9999;}
 .main .item_list ul{list-style:none;}
 .main .item_list ul li{}
 .main .item_list ul li a{display:block;height:40px;line-height:40px;text-decoration:none;padding-left:10px;}
 .main .item_list ul li a:hover{background-color:#ddd;}
+
+.main .miss{display:none;}
+
+.main .clrblue ul li a{color:#20859C;}
+.main .clrblue ul li a:hover{background-color:#20859C;color:#fff;}
+.main .clrorange ul li a{color:#CB7E24;}
+.main .clrorange ul li a:hover{background-color:#CB7E24;color:#fff;}
+.main .clrred ul li a{color:#B01028;}
+.main .clrred ul li a:hover{background-color:#B01028;color:#fff;}

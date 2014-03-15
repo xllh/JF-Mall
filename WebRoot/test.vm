@@ -8,6 +8,10 @@
 <body>
     #set($name="a1b2")
     $name
+	$request.getParameter("id")
+	$request.getAttribute("para0")
+	#set($user = ${BT.getUser()})
+	${user.isExistEmail('buxianglong@oschina.net')}
 	<span class="glyphicon glyphicon-search"></span>
 	##<button type="button" class="btn btn-default btn-lg">
     ##  <span class="glyphicon glyphicon-star"></span> Star

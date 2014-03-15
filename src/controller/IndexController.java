@@ -21,6 +21,7 @@ public class IndexController extends CoreController {
 	}
 	
 	public void test(){
+		setAttr("para0", getPara(0));
 		renderVelocity("/test.vm");
 	}
 }
