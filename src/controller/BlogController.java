@@ -9,11 +9,10 @@ import bean.Blog;
 import bean.myPage;
 
 import com.jfinal.aop.Before;
-import com.jfinal.core.Controller;
 import com.jfinal.plugin.ehcache.CacheInterceptor;
 import com.jfinal.plugin.ehcache.CacheName;
 
-public class BlogController extends Controller{
+public class BlogController extends CoreController{
 	@Before(CacheInterceptor.class)
 	@CacheName("blog_uid")
 	public void index(){

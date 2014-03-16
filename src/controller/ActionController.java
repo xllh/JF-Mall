@@ -1,17 +1,12 @@
 package controller;
 
 import java.io.File;
-
 import javax.servlet.http.HttpSession;
-
 import org.apache.commons.lang.StringUtils;
-
 import bean.User;
-
-import com.jfinal.core.Controller;
 import com.jfinal.upload.UploadFile;
 
-public class ActionController extends Controller {
+public class ActionController extends CoreController {
 	public void login(){
 		String email = getPara("email").trim();
 		String password = getPara("password").trim();

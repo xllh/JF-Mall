@@ -80,11 +80,6 @@ public class MyVelocityRender extends Render {
              *  references (ex. $list) in the template
              */
             VelocityContext context = new VelocityContext();
-            //将请求和相应对象放入上下文
-            context.put("request", this.request);
-            context.put("response", this.response);
-            //添加访问Bean的对象
-            context.put("BT", VelocityTool.class);
             
     		// Map root = new HashMap();
     		for (Enumeration<String> attrs=request.getAttributeNames(); attrs.hasMoreElements();) {
@@ -110,7 +105,18 @@ public class MyVelocityRender extends Render {
            response.setContentType(contentType);
            writer = response.getWriter();	// BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
             
-           template.merge(context, writer);
+           //将请求和相应对象放入上下文
+           context.put("request", this.request);
+           context.put("response", this.response);
+           //添加访问Bean的对象
+           context.put("BT", VelocityTool.class);
+           
+           //template.merge(context, writer);
+           MyVelocityLayoutServlet mvls = new MyVelocityLayoutServlet();
+           mvls.init(null);
+           mvls.fillContext(context, request);
+           mvls.mergeTemplate(template, context, response);
+           
            writer.flush();	// flush and cleanup
         }
         catch(ResourceNotFoundException e) {
