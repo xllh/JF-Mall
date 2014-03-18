@@ -28,4 +28,8 @@ public class IndexController extends CoreController {
 	public void regist(){
 		renderVelocity("regist.vm");
 	}
+	
+	public void login(){
+		renderVelocity("login.vm");
+	}
 }

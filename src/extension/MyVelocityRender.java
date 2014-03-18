@@ -1,8 +1,10 @@
 package extension;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 import java.util.Map.Entry;
@@ -112,10 +114,23 @@ public class MyVelocityRender extends Render {
            context.put("BT", VelocityTool.class);
            
            //template.merge(context, writer);
-           MyVelocityLayoutServlet mvls = new MyVelocityLayoutServlet();
-           mvls.init(null);
-           mvls.fillContext(context, request);
-           mvls.mergeTemplate(template, context, response);
+//           MyVelocityLayoutServlet mvls = new MyVelocityLayoutServlet();
+//           mvls.init(null);
+//           mvls.fillContext(context, request);
+//           mvls.mergeTemplate(template, context, response);
+           
+           /*
+            *  Now have the template engine process your template using the
+            *  data placed into the context.  Think of it as a  'merge'
+            *  of the template and the data to produce the output stream.
+            */
+           response.setContentType(contentType);
+           writer = response.getWriter();	// BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+            List<Template> layout = new ArrayList<Template>();
+            layout.add(Velocity.getTemplate("/velocity/layout/admin.vm"));
+            layout.add(Velocity.getTemplate("/velocity/layout/default.vm"));
+           template.merge(context, writer, layout);
+           writer.flush();	// flush and cleanup
            
            writer.flush();	// flush and cleanup
         }
