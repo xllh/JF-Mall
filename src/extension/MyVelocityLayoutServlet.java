@@ -43,11 +43,11 @@ public class MyVelocityLayoutServlet extends VelocityLayoutServlet {
     /**
      * The default error template's filename.
      */
-    public static final String CUSTOM_ERROR_TEMPLATE = "error.vm";
+    public static final String CUSTOM_ERROR_TEMPLATE = "/error.vm";
     /**
      * The default layout directory
      */
-    public static final String CUSTOM_LAYOUT_DIR = "velocity/layout/";
+    public static final String CUSTOM_LAYOUT_DIR = "/velocity/layout/";
     /**
      * The default filename for the servlet's default layout
      */
@@ -120,7 +120,6 @@ public class MyVelocityLayoutServlet extends VelocityLayoutServlet {
         getLog().info("VelocityLayoutServlet: Error screen is '"+errorTemplate+"'");
         getLog().info("VelocityLayoutServlet: Layout directory is '"+layoutDir+"'");
         getLog().info("VelocityLayoutServlet: Default layout template is '"+defaultLayout+"'");
-
         // for efficiency's sake, make defaultLayout a full path now
         defaultLayout = layoutDir + defaultLayout;
     }

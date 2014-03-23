@@ -1,10 +1,9 @@
 package extension;
 
-import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.io.IOException;
+import java.io.StringWriter;
 import java.util.Enumeration;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 import java.util.Map.Entry;
@@ -17,8 +16,6 @@ import org.apache.velocity.app.Velocity;
 import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.exception.ResourceNotFoundException;
 
-import tool.VelocityTool;
-
 import com.jfinal.render.Render;
 import com.jfinal.render.RenderException;
 
@@ -30,6 +27,11 @@ public class MyVelocityRender extends Render {
 	private transient static final String encoding = getEncoding();
 	private transient static final String contentType = "text/html;charset=" + encoding;
 	private transient static final Properties properties = new Properties();
+	
+	public static final String KEY_SCREEN_CONTENT = "screen_content";
+	public static final String KEY_LAYOUT = "layout";
+	public static final String layoutDir = "/WEB-INF/layout/";
+	public static final String defaultLayout = "default.vm";
 	
 	private transient static boolean notInit = true;
 	
@@ -73,66 +75,66 @@ public class MyVelocityRender extends Render {
 			 notInit = false;
 		 }
 		
-		 
-		PrintWriter writer = null;
-        try {
-            /*
-             *  Make a context object and populate with the data.  This
-             *  is where the Velocity engine gets the data to resolve the
-             *  references (ex. $list) in the template
-             */
-            VelocityContext context = new VelocityContext();
-            
-    		// Map root = new HashMap();
+//		PrintWriter writer = null;
+		StringWriter writer = null;
+		try {
+//            /*
+//             *  Make a context object and populate with the data.  This
+//             *  is where the Velocity engine gets the data to resolve the
+//             *  references (ex. $list) in the template
+//             */
+//            VelocityContext context = new VelocityContext();
+//            
+//    		// Map root = new HashMap();
+//    		for (Enumeration<String> attrs=request.getAttributeNames(); attrs.hasMoreElements();) {
+//    			String attrName = attrs.nextElement();
+//    			context.put(attrName, request.getAttribute(attrName));
+//    		}
+//    		
+//            /*
+//             *  get the Template object.  This is the parsed version of your
+//             *  template input file.  Note that getTemplate() can throw
+//             *   ResourceNotFoundException : if it doesn't find the template
+//             *   ParseErrorException : if there is something wrong with the VTL
+//             *   Exception : if something else goes wrong (this is generally
+//             *        indicative of as serious problem...)
+//             */
+//            Template template = Velocity.getTemplate(view);
+//            
+//            /*
+//             *  Now have the template engine process your template using the
+//             *  data placed into the context.  Think of it as a  'merge'
+//             *  of the template and the data to produce the output stream.
+//             */
+//           response.setContentType(contentType);
+//           writer = response.getWriter();	// BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+//            
+//           template.merge(context, writer);
+//           writer.flush();	// flush and cleanup
+        	//获取请求页面本身
+			StringWriter sw = new StringWriter();
+        	VelocityContext context = new VelocityContext();
     		for (Enumeration<String> attrs=request.getAttributeNames(); attrs.hasMoreElements();) {
     			String attrName = attrs.nextElement();
     			context.put(attrName, request.getAttribute(attrName));
     		}
-    		
-            /*
-             *  get the Template object.  This is the parsed version of your
-             *  template input file.  Note that getTemplate() can throw
-             *   ResourceNotFoundException : if it doesn't find the template
-             *   ParseErrorException : if there is something wrong with the VTL
-             *   Exception : if something else goes wrong (this is generally
-             *        indicative of as serious problem...)
-             */
-            Template template = Velocity.getTemplate(view);
-            
-            /*
-             *  Now have the template engine process your template using the
-             *  data placed into the context.  Think of it as a  'merge'
-             *  of the template and the data to produce the output stream.
-             */
-           response.setContentType(contentType);
-           writer = response.getWriter();	// BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-            
-           //将请求和相应对象放入上下文
-           context.put("request", this.request);
-           context.put("response", this.response);
-           //添加访问Bean的对象
-           context.put("BT", VelocityTool.class);
-           
-           //template.merge(context, writer);
-//           MyVelocityLayoutServlet mvls = new MyVelocityLayoutServlet();
-//           mvls.init(null);
-//           mvls.fillContext(context, request);
-//           mvls.mergeTemplate(template, context, response);
-           
-           /*
-            *  Now have the template engine process your template using the
-            *  data placed into the context.  Think of it as a  'merge'
-            *  of the template and the data to produce the output stream.
-            */
-           response.setContentType(contentType);
-           writer = response.getWriter();	// BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
-            List<Template> layout = new ArrayList<Template>();
-            layout.add(Velocity.getTemplate("/velocity/layout/admin.vm"));
-            layout.add(Velocity.getTemplate("/velocity/layout/default.vm"));
-           template.merge(context, writer, layout);
-           writer.flush();	// flush and cleanup
-           
-           writer.flush();	// flush and cleanup
+        	Template template = Velocity.getTemplate(view, "utf-8");
+        	template.merge(context, sw);
+        	context.put(KEY_SCREEN_CONTENT, sw.toString());
+        	
+        	//获取模板页面信息
+        	writer = new StringWriter();
+        	Object obj = context.get(KEY_LAYOUT);
+        	String layout = (obj == null) ? null : obj.toString();
+        	if(layout == null){
+        		layout = layoutDir + defaultLayout;
+        	}else{
+        		layout = layoutDir + layout;
+        	}
+        	template = Velocity.getTemplate(layout, "utf-8");
+        	template.merge(context, writer);
+        	response.setContentType(contentType);
+        	response.getWriter().write(writer.toString());
         }
         catch(ResourceNotFoundException e) {
         	throw new RenderException("Example : error : cannot find template " + view, e);
@@ -144,8 +146,13 @@ public class MyVelocityRender extends Render {
             throw new RenderException(e);
         }
         finally {
-        	if (writer != null)
-        		writer.close();
+        	if(writer != null){
+        		try {
+					writer.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+        	}
         }
 	}
 }

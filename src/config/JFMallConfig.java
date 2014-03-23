@@ -1,5 +1,8 @@
 package config;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+
 import route.ActionRoutes;
 import route.AdminRoutes;
 import route.FrontRoutes;
@@ -15,6 +18,8 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.jfinal.render.ViewType;
+
+import extension.MyVelocityLayoutServlet;
 
 public class JFMallConfig extends JFinalConfig{
 	

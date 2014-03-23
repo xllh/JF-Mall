@@ -1,76 +1,69 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-	<title>阿豆网</title>	
-	#parse("/velocity/macro/bootstrap.vm")
-</head>
-<body>
-    #set($name="a1b2")
-    $name
-	$request.getParameter("id")
-	$request.getAttribute("para0")
-	#set($user = ${BT.getUser()})
-	${user.isExistEmail('buxianglong@oschina.net')}
-	<span class="glyphicon glyphicon-search"></span>
-	##<button type="button" class="btn btn-default btn-lg">
-    ##  <span class="glyphicon glyphicon-star"></span> Star
-	##</button>
-	<div class="dropdown">
-      <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
-        Dropdown
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-        <li role="presentation" class="divider"></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-      </ul>
-    </div>
-	<ul class="pagination">
-      <li><a href="#">&laquo;</a></li>
-      <li><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li><a href="#">5</a></li>
-      <li><a href="#">&raquo;</a></li>
-    </ul>
-	<div class="progress">
-      <div class="progress-bar progress-bar-success" style="width: 35%">
-        <span class="sr-only">35% Complete (success)</span>
-      </div>
-      <div class="progress-bar progress-bar-warning" style="width: 20%">
-        <span class="sr-only">20% Complete (warning)</span>
-      </div>
-      <div class="progress-bar progress-bar-danger" style="width: 10%">
-        <span class="sr-only">10% Complete (danger)</span>
-      </div>
-    </div>
-	<div class="switch switch-large">
-        <input type="checkbox" checked />
-    </div>
-    
-    <div class="switch">
-        <input type="checkbox" checked disabled/>
-    </div>
-    
-    <div class="switch switch-small">
-        <input type="checkbox" />
-    </div>
-    
-    <div class="switch switch-mini">
-        <input type="checkbox" checked />
-    </div>
-	<div class="switch" data-on="primary" data-off="info">
-        <input type="checkbox" checked />
-    </div>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$("input[type='checkbox']").bootstrapSwitch('animate', true);
-		});
-	</script>
-</body>
-</html>
+request:$request<br>
+response:$response<br>
+application:$application<br>
+session:$request.getSession()<br />
+$session.getAttribute("name")<br />
+$request.getAttribute("p1")<br/>
+$application.getAttribute("p1")<br/>
+$params<br>
+$params.getValue("hehe")
+<span class="glyphicon glyphicon-search"></span>
+##<button type="button" class="btn btn-default btn-lg">
+##  <span class="glyphicon glyphicon-star"></span> Star
+##</button>
+<div class="dropdown">
+  <button class="btn dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+    Dropdown
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+    <li role="presentation" class="divider"></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+  </ul>
+</div>
+<ul class="pagination">
+  <li><a href="#">&laquo;</a></li>
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#">4</a></li>
+  <li><a href="#">5</a></li>
+  <li><a href="#">&raquo;</a></li>
+</ul>
+<div class="progress">
+  <div class="progress-bar progress-bar-success" style="width: 35%">
+    <span class="sr-only">35% Complete (success)</span>
+  </div>
+  <div class="progress-bar progress-bar-warning" style="width: 20%">
+    <span class="sr-only">20% Complete (warning)</span>
+  </div>
+  <div class="progress-bar progress-bar-danger" style="width: 10%">
+    <span class="sr-only">10% Complete (danger)</span>
+  </div>
+</div>
+<div class="switch switch-large">
+    <input type="checkbox" checked />
+</div>
+
+<div class="switch">
+    <input type="checkbox" checked disabled/>
+</div>
+
+<div class="switch switch-small">
+    <input type="checkbox" />
+</div>
+
+<div class="switch switch-mini">
+    <input type="checkbox" checked />
+</div>
+<div class="switch" data-on="primary" data-off="info">
+    <input type="checkbox" checked />
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("input[type='checkbox']").bootstrapSwitch('animate', true);
+	});
+</script>

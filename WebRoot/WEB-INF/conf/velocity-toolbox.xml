@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <toolbox>
+	<tool>
+    	<key>params</key>
+    	<scope>request</scope>
+    	<class>org.apache.velocity.tools.view.ParameterTool</class>
+   	</tool>
   	<!-- 自定义 -->
   	<tool>
     	<key>BLOG</key>
      	<scope>application</scope>
-     	<class>dao.BlogDAO</class>
+     	<class>bean.Blog</class>
     </tool>
     <tool>
     	<key>USER</key>
      	<scope>application</scope>
-     	<class>dao.UserDAO</class>
+     	<class>bean.User</class>
     </tool>
 </toolbox>

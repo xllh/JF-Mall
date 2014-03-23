@@ -21,11 +21,14 @@ public class IndexController extends CoreController {
 	}
 	
 	public void test(){
-		setAttr("para0", getPara(0));
+		setSessionAttr("name","bbxxll222");
+		setAttr("age", "24b");
 		renderVelocity("/test.vm");
 	}
 	
 	public void regist(){
+		setAttr("p1", getPara(0));
+		System.out.println(getPara(0));
 		renderVelocity("regist.vm");
 	}
 	
