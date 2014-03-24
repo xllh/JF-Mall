@@ -1,3 +1,5 @@
+#set($layout="index.vm")
+#set($title="阿豆豆首页页")
 request:$request<br>
 response:$response<br>
 application:$application<br>

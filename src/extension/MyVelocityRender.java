@@ -111,20 +111,22 @@ public class MyVelocityRender extends Render {
 //            
 //           template.merge(context, writer);
 //           writer.flush();	// flush and cleanup
-        	//获取请求页面本身
-			StringWriter sw = new StringWriter();
-        	VelocityContext context = new VelocityContext();
-    		for (Enumeration<String> attrs=request.getAttributeNames(); attrs.hasMoreElements();) {
+			//获取请求页面本身
+			VelocityContext context = new VelocityContext();
+        	for (Enumeration<String> attrs=request.getAttributeNames(); attrs.hasMoreElements();) {
     			String attrName = attrs.nextElement();
     			context.put(attrName, request.getAttribute(attrName));
     		}
-        	Template template = Velocity.getTemplate(view, "utf-8");
-        	template.merge(context, sw);
-        	context.put(KEY_SCREEN_CONTENT, sw.toString());
+			StringWriter writer2 = new StringWriter();
         	
-        	//获取模板页面信息
+        	Template template = Velocity.getTemplate(view, "utf-8");
+        	template.merge(context, writer2);
+        	context.put(KEY_SCREEN_CONTENT, writer2.toString());
+			
+			//获取模板页面信息
+        	VelocityContext context2 = new VelocityContext(context);
         	writer = new StringWriter();
-        	Object obj = context.get(KEY_LAYOUT);
+        	Object obj = context2.get(KEY_LAYOUT);
         	String layout = (obj == null) ? null : obj.toString();
         	if(layout == null){
         		layout = layoutDir + defaultLayout;
@@ -132,8 +134,10 @@ public class MyVelocityRender extends Render {
         		layout = layoutDir + layout;
         	}
         	template = Velocity.getTemplate(layout, "utf-8");
-        	template.merge(context, writer);
+        	
+        	template.merge(context2, writer);
         	response.setContentType(contentType);
+        	
         	response.getWriter().write(writer.toString());
         }
         catch(ResourceNotFoundException e) {
